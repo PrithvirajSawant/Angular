@@ -1,0 +1,61 @@
+<!-- Assignment 1 :  -->
+ <!-- Topic (b) -->
+<!DOCTYPE html>
+<html>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <body ng-app="myApp">
+
+    <!-- Topic : (b) -->
+    <!-- ng-repeat  -->
+    <div  ng-init="names1=['Jani','Hege','Kai']">
+
+      <h2>{{msg}}</h2>
+
+      <p>Looping with ng-repeat:</p>
+      <ul>
+        <li ng-repeat="x in names1">{{ x }}</li>
+      </ul>
+    </div>
+
+    <p>-------------------------------------------------------------------</p>
+
+    <!-- Topic : (a)  --> 
+    <!-- $scope & $rootScope-->
+    <div ng-controller="namesCtrl">
+
+      <h2>{{msg}}</h2>
+      <!-- Results in error (i.e, the view will not render {{msg}}) if we do not implememt controller in script -->
+       <!-- This only happens if we have defined a controller directive (ng-controller) over an element (in our case : ng-controller="namesCtrl" ) -->
+        <!-- If there is no controller directive defined on our element the app.run() runs perfectly  -->
+
+      <p>Employee List using $scope:</p>
+      <ul>
+        <li ng-repeat="y in names">{{ y.name + " " + y.lastName}}</li>
+      </ul>
+      <p>The variable "x" has a different value for each repetition, proving that each repetition has its own scope.</p>
+      
+    </div>
+
+    <script>
+      var app = angular.module('myApp',[]);
+
+      app.run(function($rootScope){
+        $rootScope.msg  = "Hello World : This is rootScope";
+      }); 
+      
+      app.controller('namesCtrl',function($scope, $rootScope){
+        //$rootScope.msg = "Hello World : Changes globally (Overrides)";
+        //$scope.msg = "Hello World : Changes for the scope";
+        $scope.names = [{name:'Raj', lastName:'Dubal'}, {name:'Rahul', lastName:'Ravan'}]
+      });
+
+
+      //important : Links to line no. : 27,28,29 
+      //Atleast this is expected if we difine a controller directive on an elelment
+      /*app.controller('namesCtrl',function($scope){
+
+      });*/
+    </script>
+
+  </body>
+</html>

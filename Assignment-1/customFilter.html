@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <title>Custom Filter</title>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="myCtrl">
+        <ul>
+            <li ng-repeat="x in names">
+                {{x | customFormat}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.filter('customFormat', function(){
+            return function(x){
+                var char, txt = "";
+                for(var i=0; i<x.length; i++)
+                {
+                    char = x[i];
+                    if(i % 2 == 0)
+                        char = char.toUpperCase();
+                    txt += char;
+                }
+                return txt;
+            };
+        });
+
+        app.controller('myCtrl', function($scope){
+            $scope.names=['Raj', 'Prithviraj', 'Dani', 'Viraj', 'Ravi' ];
+        });
+    </script>
+    
+</body>
+</html>

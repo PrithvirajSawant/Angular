@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    
+    <title>Order By Project</title>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="myCtrl">
+        <table border="1" width="100%">
+            <tr style="cursor: pointer;">
+                <th  ng-click="orderByMe('name')">Name</th>
+                <th ng-click="orderByMe('state')">State</th>
+            </tr>
+            <tr ng-repeat="x in names | orderBy : myOrder">
+                <td>{{x.name}}</td>
+                <td>{{x.state}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+
+       /* app.controller('myCtrl', function($scope){
+            $scope.orderByMe = function(x){
+                $scope.myOrder = x;
+            }
+        });*/
+        //Do not define myCtrl twice
+        //This will cause AngularJS to overwrite the first controller definition with the second one
+
+        app.controller('myCtrl', function($scope){
+            $scope.names = [{name: 'Raj', state : 'karnataka'},
+            {name : 'Mahesh', state : 'Maharashtra'},
+            {name : 'Aryan', state : 'jharkhand'}];
+
+            $scope.orderByMe = function(x){
+                $scope.myOrder = x;
+            }
+        });   
+
+
+    </script>
+    
+</body>
+</html>

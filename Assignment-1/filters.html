@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Filters</title>
+</head>
+<body ng-app="myApp">
+
+    <h1>Filters :</h1>
+
+    <!-- uppercase filter -->
+    <div ng-controller="upperCaseFilterCtrl">
+        <p>1. uppercase filter</p>
+        <h3>{{firstName + " " +lastName | uppercase}}</h3>
+    </div>
+
+    <p>--------------------------END-----------------------------------</p>
+
+
+    <div ng-controller="lowerCaseFilterCtrl">
+        <p>2. lowercase filter</p>
+        <h3>{{firstName | lowercase}}</h3>
+    </div>
+
+    <p>--------------------------END-----------------------------------</p>
+
+    <div ng-controller="orderByCtrl">
+        <p>3. orderBy  'state' filter</p>
+        <ul>
+            <li ng-repeat="x in list | orderBy : 'state'">
+                <h3>{{x.name + " : " + x.state}}</h3>
+            </li>
+        </ul>
+    </div>
+
+    <p>--------------------------END-----------------------------------</p>
+
+    <div ng-controller="currency">
+        <p>4. currency filter</p>
+        <h3>Price = {{cost | currency : "Rs" : 3}}</h3>
+    </div>
+
+    <p>--------------------------END-----------------------------------</p>
+
+    <div ng-controller="filter">
+        <p>5. filter by 'i' filter</p>
+        <ul>
+            <li ng-repeat="x in filterNameList | filter : 'i'">
+                {{x}}
+            </li>
+        </ul>
+    </div>
+    
+    <script>
+        var app = angular.module('myApp',[]);
+
+        app.run(function($rootScope){
+
+           fn = $rootScope.firstName = "Prithviraj",
+           ln = $rootScope.lastName = "Sawant"
+        });
+        
+
+        app.controller("upperCaseFilterCtrl", function($scope){
+
+        });
+
+        app.controller("lowerCaseFilterCtrl", function($scope){
+
+        });
+
+        app.controller("orderByCtrl", function($scope, $rootScope){
+                $scope.list = [
+                {name : fn + " " + ln , state : "karnataka"},
+                {name : "Mahesh Wakade", state : "Maharashtra"},
+                {name : "Aryan Kumar", state : "Jharkhand"}
+                ]
+        });
+
+        app.controller("currency", function($scope){
+            $scope.cost=77;
+        });
+
+        app.controller("filter", function($scope){
+            $scope.filterNameList = ['Raj', 'Aryan', 'Dani', 'Carl', 'Prithviraj', 'Kai']
+        });
+    </script>
+</body>
+</html>
