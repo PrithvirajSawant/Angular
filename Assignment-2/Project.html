@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <title>Read Employee List from empService</title>
+
+    <style>
+        input.ng-invalid {
+            background-color: lightblue;
+        }
+        </style>
+</head>
+<body ng-app="myApp">
+
+    <p>Filter input field : </p>
+    <input type="text" ng-model="data" required>
+    <br><br>
+    <div ng-controller="myCtrl">
+
+        <table border="1" width="50%">
+            <tr style="cursor: pointer;">
+                <th  ng-click="First Name">Name</th>
+                <th ng-click="Last Name">State</th>
+            </tr>
+            <tr ng-repeat="x in names | orderBy :  'firstName' | filter : data">
+                <td>{{x.firstName}}</td>
+                <td>{{x.lastName}}</td>
+            </tr>
+        </table>
+
+        <!-- <ul>
+            <li ng-repeat="x in names">
+                
+                {{x.firstName + " "+ x.lastName}}
+            </li>
+        </ul> -->
+        <p>- {{msg}} -</p>
+    </div>
+
+    <script>    
+        var app = angular.module('myApp', []);
+
+        app.service('empService', function($http){
+            this.getEmp = function(){
+                return $http.get('empList.json').then(function(response){
+                    return response.data;
+                }).catch(function(error){
+                    console.log("Error fetching the employee", error);
+                    return[];
+                });
+            };
+        });
+
+        app.controller('myCtrl', function($scope, empService){
+            empService.getEmp().then(function(data){
+                $scope.names = data;
+                $scope.msg = "Emp List fetched successfully";
+            });
+        });
+
+    </script>
+    
+</body>
+</html>

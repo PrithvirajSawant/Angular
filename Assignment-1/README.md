@@ -4,12 +4,12 @@
 ###    b. ng-repeat : [empList.html](empList.html)
 ###    c. Filter : [filters.html](filters.html)
 ###    d. orderBy : [filters.html](filters.html)
-###    e. ng-if
-###    f. (i) ng-class 
+###    e. ng-if  : [ng-if](ng-if.html)
+###    f. (i) ng-class : [ng-class](ng-class.html)
 ###       (ii)ng-click : [changeName.html](changeName.html)
 
 
-## Additional :
-### filterProject  :  [filterProject](filterProject.html)
-### orderByProject :  [orderByProject](orderByProject.html)
-### customFilter   :  [customFilter](customFilter.html)
+## Additional (mini projects):
+### filterProject  :  [filterProject](personalProjects/filterProject.html)
+### orderByProject :  [orderByProject](personalProjects/orderByProject.html)
+### customFilter   :  [customFilter](personalProjects/customFilter.html)

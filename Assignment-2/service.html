@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <title>Services</title>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="myCtrl">
+        <p>This is the URL</p>
+        {{myUrl}}
+    </div>
+
+    <p>-------------------------------------------------------------------</p>
+
+    <!-- $http -->
+    <div ng-controller="httpController">
+        {{msg}}
+    </div>
+
+    <p>-------------------------------------------------------------------</p>
+
+    <div ng-controller="timeOutCtrl" >
+        {{timeOutMsg}}
+    </div>
+
+    <p>-------------------------------------------------------------------</p>
+
+    <div ng-controller="intervalCtrl">
+        {{intervalMsg}}
+    </div>
+
+    <p>-------------------------------------------------------------------</p>
+
+    <div ng-controller="customServiceCtrl">
+        {{binaryMsg}}
+    </div>
+
+    <!-- <div ng-controller="httpController">
+        <div ng-bind-html="msg"></div>
+    </div> -->
+    
+
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('myCtrl', function($scope, $location){
+            $scope.myUrl = $location.absUrl();
+        });
+
+        // Shorthand method
+        /*app.controller('httpController',function($scope, $http){
+            $http.get("welcome.htm").then(function(response){
+                $scope.msg = response.data;
+            });
+        });*/
+
+        // This executes the $http service with an object (i.e, methos & url) as an argument.
+        app.controller('httpController', function($scope, $http){
+            $http({
+                method : "GET",
+                url  : "welcome.htm"
+            }).then(function mySuccess(response){
+                $scope.msg = response.data;
+            }, function myError(response){
+                $scope.msg = response.data;
+            });
+        });
+
+        app.controller('timeOutCtrl', function($scope, $timeout){
+            $scope.timeOutMsg = "Hello World";
+            $timeout(function(){
+                $scope.timeOutMsg = "This is the timeout service"
+            }, 2000).then(function(){
+                console.log("Timeout completed : msg displayed")
+            });
+        });
+
+        app.controller('intervalCtrl', function($scope, $interval){
+            $scope.intervalMsg = new Date().toLocaleTimeString();
+            $interval(function(){
+                $scope.intervalMsg = new Date().toLocaleTimeString();
+            }, 1000);
+        });
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        app.service('customService', function(){
+             this.myFunc = function(x) {
+                return x.toString(2)
+            }
+        });
+
+        app.controller('customServiceCtrl', function($scope, customService){
+            $scope.binaryMsg = customService.myFunc(255);
+        });
+        
+    </script>
+
+    
+</body>
+</html>

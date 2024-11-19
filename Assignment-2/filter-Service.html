@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <title>Filter Service</title>
+</head>
+<body ng-app="myApp">
+
+    <p>This takes the input (hardCode) and display's the HEX (hexadecimal) value </p>
+
+    <h1>{{255 | customFilter}}</h1>
+    
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.service('hex', function(){
+            this.myFunc = function(x){
+                return x.toString(16);
+            }
+        });
+
+        app.filter('customFilter', ['hex', function(hex){
+            return function(x){
+                return hex.myFunc(x);
+            };
+        }]);
+    </script>
+</body>
+</html>
