@@ -1,0 +1,214 @@
+<div class="homeCtrl">
+  <h1>Home Page</h1>
+  <p>You are now logged in.</p>
+
+  <div>
+    <h3>Add New Employee</h3>
+    <div class="wrapper">
+      <div class="login-box">
+        <h3 class="info-text">Employee Registration</h3>
+
+        <form
+          name="createForm"
+          ng-submit="createEmp()"
+          class="form-container"
+          novalidate
+        >
+          <!-- <div class="input-addon">
+            <input
+              ng-model="emp.empId"
+              name="empId"
+              class="form-element input-field"
+              placeholder="Employee ID"
+              type="number"
+            />
+            <button class="input-addon-item">
+              <span class="fa fa-user"></span>
+            </button>
+          </div> -->
+          <!-- <div class="input-addon">
+            <input
+              ng-model="emp.cmpyEmpId"
+              name="cmpyEmpId"
+              class="form-element input-field"
+              placeholder="Company Employee ID"
+              type="text"
+            />
+            <button class="input-addon-item">
+              <span class="fa fa-user"></span>
+            </button>
+          </div> -->
+          <div class="input-addon">
+            <input
+              ng-model="emp.firstName"
+              name="firstName"
+              class="form-element input-field"
+              placeholder="First Name"
+              type="text"
+            />
+            <button class="input-addon-item">
+              <span class="fa fa-envelope"></span>
+            </button>
+          </div>
+          <div class="input-addon">
+            <input
+              ng-model="emp.lastName"
+              name="lastName"
+              class="form-element input-field"
+              placeholder="Last Name"
+              type="text"
+            />
+            <button class="input-addon-item">
+              <span class="fa fa-lock"></span>
+            </button>
+          </div>
+          <div class="input-addon">
+            <input
+              ng-model="emp.contactNo"
+              name="contactNo"
+              class="form-element input-field"
+              placeholder="Contact Number"
+              type="number"
+            />
+            <button class="input-addon-item">
+              <span class="fa fa-lock"></span>
+            </button>
+          </div>
+          <div class="input-addon">
+            <input
+              ng-model="emp.emailId"
+              name="emailId"
+              class="form-element input-field"
+              placeholder="Email ID "
+              type="emailId"
+            />
+            <button
+              type="submit"
+              ng-disabled="createForm.$invalid"
+              class="input-addon-item"
+            >
+              <span class="fa fa-lock"></span>
+            </button>
+          </div>
+          <!-- <div class="input-addon">
+            <input
+              ng-model="emp.deptId"
+              name="deptId"
+              class="form-element input-field"
+              placeholder="Department ID "
+              type="number"
+            />
+            <button
+              type="submit"
+              ng-disabled="createForm.$invalid"
+              class="input-addon-item"
+            >
+              <span class="fa fa-lock"></span>
+            </button>
+          </div> -->
+          <!-- <div class="input-addon">
+            <input
+              ng-model="emp.deptName"
+              name="deptName"
+              class="form-element input-field"
+              placeholder="Department Name "
+              type="text"
+            />
+            <button
+              type="submit"
+              ng-disabled="createForm.$invalid"
+              class="input-addon-item"
+            >
+              <span class="fa fa-lock"></span>
+            </button>
+          </div> -->
+          <!-- <div class="input-addon">
+            <input
+              ng-model="emp.name"
+              name="branchName"
+              class="form-element input-field"
+              placeholder="Branch Name "
+              type="text"
+            />
+            <button
+              type="submit"
+              ng-disabled="createForm.$invalid"
+              class="input-addon-item"
+            >
+              <span class="fa fa-lock"></span>
+            </button>
+          </div> -->
+          
+
+          <input
+            class="form-element is-submit"
+            type="submit"
+            value="Create Emp"
+          />
+        </form>
+        <!-- <p>Or if you already have an user <a href="#">login here.</a></p> -->
+      </div>
+    </div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <hr />
+  
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <hr />
+
+  <h3>Fetch All Employee</h3>
+  <label for="branchIds">Enter Branch ID:</label>
+  <input
+    type="number"
+    id="branchIds"
+    ng-model="branchId"
+    placeholder="Enter Branch ID"
+  />
+
+  <button ng-click="getAllEmpListByBrannchIds()">Fetch Employee Details</button>
+
+  <div ng-if="dataAvailable">
+    <br>
+    <h4>Filter</h4>
+    <input type="text" ng-model="f_data">
+    <h3>Employee List:</h3>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Company Employee ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Contact Number</th>
+          <th>Profile Picture</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="employee in employeeDetails | filter : f_data">
+          <td>{{ employee.empId }}</td>
+          <td>{{ employee.cmpyEmpId }}</td>
+          <td>{{ employee.firstName }}</td>
+          <td>{{ employee.lastName }}</td>
+          <td>{{ employee.emailId }}</td>
+          <td>{{ employee.contactNo }}</td>
+          <td>
+            <img
+              ng-src="{{ employee.profilePic }}"
+              alt="Profile Picture"
+              width="50"
+              height="50"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div ng-if="!dataAvailable">
+    <p>No employee details found for the provided Branch ID.</p>
+  </div>
+</div>
