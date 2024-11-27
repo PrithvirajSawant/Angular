@@ -154,6 +154,153 @@
 
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <hr />
+
+  <!-- UPDATE EMP -->
+   <!-- ng-if="" lodes in DOM later resulting in error -->
+  <div class="wrapper" ng-show="update_data"> 
+    <div class="login-box">
+      <h3 class="info-text">Update Employee</h3>
+
+      <form
+        name="updateForm"
+        ng-submit="updateEMP()"
+        class="form-container"
+        novalidate
+      >
+        <div class="input-addon">
+          <input
+            ng-model="emp.eId"
+            name="empId"
+            class="form-element input-field"
+            type="text"
+          />
+          <button class="input-addon-item">
+            <span class="fa fa-user"></span>
+          </button>
+        </div>
+        <div class="input-addon">
+          <input
+            ng-model="emp.ceId"
+            name="cmpyEmpId"
+            class="form-element input-field"
+            type="text"
+          />
+          <button class="input-addon-item">
+            <span class="fa fa-user"></span>
+          </button>
+        </div>
+        <div class="input-addon">
+          <input
+            ng-model="emp.fname"
+            name="firstName"
+            class="form-element input-field"
+            placeholder="First Name"
+            type="text"
+          />
+          <button class="input-addon-item">
+            <span class="fa fa-envelope"></span>
+          </button>
+        </div>
+        <div class="input-addon">
+          <input
+            ng-model="emp.lName"
+            name="lastName"
+            class="form-element input-field"
+            placeholder="Last Name"
+            type="text"
+          />
+          <button class="input-addon-item">
+            <span class="fa fa-lock"></span>
+          </button>
+        </div>
+        <div class="input-addon">
+          <input
+            ng-model="emp.contactNum"
+            name="contactNo"
+            class="form-element input-field"
+            placeholder="Contact Number"
+            type="text"
+          />
+          <button class="input-addon-item">
+            <span class="fa fa-lock"></span>
+          </button>
+        </div>
+        <div class="input-addon">
+          <input
+            ng-model="emp.email"
+            name="emailId"
+            class="form-element input-field"
+            placeholder="Email ID "
+            type="emailId"
+          />
+          <button
+            type="submit"
+            ng-disabled="updateForm.$invalid"
+            class="input-addon-item"
+          >
+            <span class="fa fa-lock"></span>
+          </button>
+        </div>
+
+        <div class="input-addon">
+          <input
+            ng-model="emp.designation"
+            name="designation"
+            class="form-element input-field"
+            placeholder=" Designation"
+            type="text"
+          />
+          <button
+            type="submit"
+            ng-disabled="updateForm.$invalid"
+            class="input-addon-item"
+          >
+            <span class="fa fa-lock"></span>
+          </button>
+        </div>
+
+        <div class="input-addon">
+          <input
+            ng-model="emp.leName"
+            name="levelName"
+            class="form-element input-field"
+            placeholder=" levelName"
+            type="text"
+          />
+          <button
+            type="submit"
+            ng-disabled="updateForm.$invalid"
+            class="input-addon-item"
+          >
+            <span class="fa fa-lock"></span>
+          </button>
+        </div>  
+
+        <!-- READ ONLY -->
+        <!-- <div class="input-addon">
+          <input
+            ng-model="emp.name"
+            name="branchName"
+            class="form-element input-field"
+            placeholder="Branch Name "
+            type="text"
+          />
+          <button
+            type="submit"
+            ng-disabled="createForm.$invalid"
+            class="input-addon-item"
+          >
+            <span class="fa fa-lock"></span>
+          </button>
+        </div> -->
+
+        <button class="form-element is-submit" ng-disabled="updateForm.$invalid"  type="submit"  >Update</button>
+      </form>
+      <button class="form-element is-submit" ng-click="cancel_form()"  >Cancel</button>
+    </div>
+  </div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br>
   
 
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -185,6 +332,8 @@
           <th>Email</th>
           <th>Contact Number</th>
           <th>Profile Picture</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -203,6 +352,9 @@
               height="50"
             />
           </td>
+          <td><button ng-click="show_update_data(employee)">Edit</button></td>
+          <td><button ng-click="delete_data(employee.empId)">Delete</button></td>
+
         </tr>
       </tbody>
     </table>
@@ -211,4 +363,5 @@
   <div ng-if="!dataAvailable">
     <p>No employee details found for the provided Branch ID.</p>
   </div>
+
 </div>

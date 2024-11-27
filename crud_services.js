@@ -49,3 +49,33 @@ app.service('createEmpService', ['$http', function($http){
         });
     };
 }]);
+
+//Update Service
+app.service('updateEmpService',['$http', function($http){
+    this.updateEmp = function(updateData){
+        const token = localStorage.getItem('authToken');
+        return $http({
+            method : 'POST',
+            url : 'http://gtdev.greentinsolutions.com:8085/GGRLocService/updateemployeedetails',
+            data : updateData,
+            headers : {
+                Authorization : token
+            }
+        });
+    };
+}]);
+
+//DELETE SERVICE
+app.service('deleteEmpService',['$http', function($http){
+    this.deleteEmp = function(empId){
+        const token = localStorage.getItem('authToken');
+        return $http({
+            method : 'GET',
+            url : 'http://gtdev.greentinsolutions.com:8085/GGRLocService/deactivateEmployeeRecord/' + empId,
+            // data : deleteData,
+            headers : {
+                Authorization : token
+            }
+        });
+    };
+}]);

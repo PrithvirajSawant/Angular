@@ -26,6 +26,7 @@ app.controller('loginCtrl', ['$scope', 'loginService', '$location', function ($s
                     loginService.login(loginData).then(function (loginResponse) {
                         if (loginResponse.data.status === 'success' && loginResponse.data.statusCode === 200) {
                             localStorage.setItem('authToken', loginResponse.data.authToken);
+                            // localStorage.setItem('loggedUser', loginResponse.data.);
                             localStorage.setItem('logedInEmpId', orgId);
                             $location.path('/home');
                         } else {
