@@ -4,7 +4,8 @@ app.controller('loginCtrl', ['$scope', 'loginService', '$location', function ($s
     $scope.user = {};
 
     const emailForOrgId = {
-        'rakesh@greentinsolutions.com' : "1"
+        'rakesh@greentinsolutions.com' : "1",
+        'raj.dubal@greentinsolutions.com' : "1"
     };
 
     function getOrgIdByEmail(email){

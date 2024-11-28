@@ -40,6 +40,19 @@
           </div> -->
           <div class="input-addon">
             <input
+              ng-model="emp.ceId"
+              name="cmpyEmpId"
+              class="form-element input-field"
+              placeholder="Company ID"
+              type="text"
+            />
+            <button class="input-addon-item">
+              <span class="fa fa-user"></span>
+            </button>
+          </div>
+
+          <div class="input-addon">
+            <input
               ng-model="emp.firstName"
               name="firstName"
               class="form-element input-field"
@@ -90,6 +103,66 @@
               <span class="fa fa-lock"></span>
             </button>
           </div>
+
+          <div class="input-addon">
+            <select
+              ng-model="emp.deptName"
+              name="deptName"
+              class="form-element input-field"
+              required
+             >
+              <option value="null" disabled selected>Select Department</option>
+              <option value="CQA">CQA</option>
+              <option value="MachineShop">MachineShop</option>
+              <option value="Production">Production</option>
+              <option value="Quality Assurance">Quality Assurance</option>
+            </select>
+            <!-- <button
+              type="submit"
+              ng-disabled="createForm.$invalid"
+              class="input-addon-item"
+            >
+              <span class="fa fa-lock"></span>
+            </button> -->
+          </div>
+
+          <div class="input-addon">
+            <select
+              ng-model="emp.levelName"
+              name="levelName"
+              class="form-element input-field"
+              required
+             >
+              <option value="null" disabled selected>Select lvlName</option>
+              <option value="STAFF">STAFF</option>
+              <option value="OE">OE</option>
+            </select>
+            <!-- <button
+              type="submit"
+              ng-disabled="createForm.$invalid"
+              class="input-addon-item"
+            >
+              <span class="fa fa-lock"></span>
+            </button> -->
+          </div>
+
+          <div class="input-addon">
+            <input
+              ng-model="emp.designation"
+              name="designation"
+              class="form-element input-field"
+              placeholder=" Designation"
+              type="text"
+            />
+            <button
+              type="submit"
+              ng-disabled="updateForm.$invalid"
+              class="input-addon-item"
+            >
+              <span class="fa fa-lock"></span>
+            </button>
+          </div>
+          <!-- <p>Selected Department ID: {{deptId}}</p> -->
           <!-- <div class="input-addon">
             <input
               ng-model="emp.deptId"
@@ -173,6 +246,7 @@
             name="empId"
             class="form-element input-field"
             type="text"
+            readonly
           />
           <button class="input-addon-item">
             <span class="fa fa-user"></span>
@@ -260,21 +334,46 @@
         </div>
 
         <div class="input-addon">
-          <input
-            ng-model="emp.leName"
+          <select
+            ng-model="emp.levelName"
             name="levelName"
             class="form-element input-field"
-            placeholder=" levelName"
-            type="text"
-          />
-          <button
+            required
+           >
+            <option value="null" disabled selected>Select lvlName</option>
+            <option value="STAFF">STAFF</option>
+            <option value="OE">OE</option>
+          </select>
+          <!-- <button
             type="submit"
-            ng-disabled="updateForm.$invalid"
+            ng-disabled="createForm.$invalid"
             class="input-addon-item"
           >
             <span class="fa fa-lock"></span>
-          </button>
-        </div>  
+          </button> -->
+        </div>
+
+        <div class="input-addon">
+          <select
+            ng-model="emp.deptName"
+            name="deptName"
+            class="form-element input-field"
+            required
+           >
+            <option value="null" disabled selected>Select Department</option>
+            <option value="CQA">CQA</option>
+            <option value="MachineShop">MachineShop</option>
+            <option value="Production">Production</option>
+            <option value="Quality Assurance">Quality Assurance</option>
+          </select>
+          <!-- <button
+            type="submit"
+            ng-disabled="createForm.$invalid"
+            class="input-addon-item"
+          >
+            <span class="fa fa-lock"></span>
+          </button> -->
+        </div>
 
         <!-- READ ONLY -->
         <!-- <div class="input-addon">
