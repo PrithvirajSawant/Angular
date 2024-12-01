@@ -114,4 +114,3 @@ app.controller('loginCtrl', ['$scope', 'loginService', '$location', function ($s
 //         });
 // }]);
 
-

@@ -1,40 +1,31 @@
-<!-- CODEPEN -->
-<div class="wrap">
-  <div class="avatar">
-    <img src="http://cdn.ialireza.me/avatar.png" />
+
+<!-- /////////////////////////////////////////////// -->
+
+<div class="container">
+  <dotlottie-player src="https://lottie.host/2a1ab3ab-79c0-47f7-8c95-4dd8f511807f/aarqmotv4M.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+  <div class="form-box">
+    <h1 id="title">LogIn</h1>
+    <form name="loginForm" ng-submit="login()" novalidate>
+      <div class="input-group">
+        <!-- <div class="input-field" id="nameField">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" placeholder="Name" />
+        </div> -->
+        <div class="input-field">
+          <i class="fa-solid fa-envelope"></i>
+          <input ng-model="user.email" type="email" placeholder="Enter your email" required />
+        </div>
+
+        <div class="input-field">
+          <i class="fa-solid fa-lock"></i>
+          <input ng-model="user.password" type="password"  placeholder="Enter your password" required/>
+        </div>
+        <!-- <p id="fp" class="fpc">Forgot Password <a href="#">Click Here</a></p> -->
+      </div>
+      <div class="btn-field">
+        <button ng-disabled="loginForm.$invalid" type="submit" id="signupBtn">Log In</button>
+        <!-- <button type="button" id="signinBtn" class="disable">Sign In</button> -->
+      </div>
+    </form>
   </div>
-  <!-- <input type="text" placeholder="username" required> -->
-  <form name="loginForm" ng-submit="login()" novalidate>
-    <!-- <input
-      type="text"
-      ng-model="user.id"
-      required
-      placeholder="Enter your org ID"
-      name="orgId"
-    />
-    <div class="bar">
-      <i></i>
-    </div> -->
-    <input
-      type="email"
-      ng-model="user.email"
-      required
-      placeholder="Enter your email"
-      name="emailId"
-    />
-    <div class="bar">
-      <i></i>
-    </div>
-    <!-- <input type="password" placeholder="password" required> -->
-    <input
-      type="password"
-      ng-model="user.password"
-      required
-      placeholder="Enter your password"
-      name="password"
-    />
-    <!-- <a href="" class="forgot_link">forgot ?</a> -->
-    <!-- <button>Sign in</button> -->
-    <button type="submit" ng-disabled="loginForm.$invalid">Login</button>
-  </form>
 </div>

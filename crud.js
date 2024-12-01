@@ -9,6 +9,8 @@ app.controller('homeCtrl', ['$scope', 'dataService', 'createEmpService', 'update
     $scope.employeeDetails = [];
     $scope.dataAvailable = false;
     $scope.update_data = false;
+    $scope.create_data = true;
+    $scope.fetch_data = false;
     $scope.emp = {};
 
     const dept = {
@@ -48,6 +50,19 @@ app.controller('homeCtrl', ['$scope', 'dataService', 'createEmpService', 'update
         console.log(lvl);
     })
 
+////////////////////////// NAV BAR FUNCTIONS /////////////////////////
+$scope.show_fetch_data = function(){
+    $scope.create_data=false;
+    $scope.fetch_data = true;
+}
+
+$scope.show_create_form = function(){
+    $scope.create_data = true;
+    $scope.fetch_data = false;
+    $scope.update_data = false;
+}
+
+
 
 ////////////////////////////////////// HOME & Services //////////////////////////////////////////////////////////////////////
 
@@ -65,6 +80,7 @@ app.controller('homeCtrl', ['$scope', 'dataService', 'createEmpService', 'update
                     //Featching the data from the for-each loop
                     $scope.show_update_data = function(employee){
                         $scope.update_data = true;
+                        $scope.fetch_data = false;
                         $scope.emp.eId = employee.empId
                         $scope.emp.ceId = employee.cmpyEmpId;
                         $scope.emp.fname = employee.firstName;
